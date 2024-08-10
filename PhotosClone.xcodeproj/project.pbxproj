@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFA835122C65E82F00040F9E /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA835112C65E82F00040F9E /* FullScreenImageViewController.swift */; };
+		BFA835152C65EB8600040F9E /* UIViewToVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA835142C65EB8600040F9E /* UIViewToVC+Extension.swift */; };
 		BFB501932C623BEB008DA823 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501922C623BEB008DA823 /* AppDelegate.swift */; };
 		BFB501952C623BEB008DA823 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501942C623BEB008DA823 /* SceneDelegate.swift */; };
 		BFB5019C2C623BEC008DA823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB5019B2C623BEC008DA823 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 		BFB501D52C62F241008DA823 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501D42C62F241008DA823 /* AlbumViewController.swift */; };
 		BFB501D72C62F258008DA823 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501D62C62F258008DA823 /* SearchViewController.swift */; };
 		BFB501DB2C62FA9C008DA823 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501DA2C62FA9C008DA823 /* Images.swift */; };
+		BFB501DD2C631347008DA823 /* AllPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501DC2C631347008DA823 /* AllPhotosView.swift */; };
+		BFB501DF2C631FB1008DA823 /* AllPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB501DE2C631FB1008DA823 /* AllPhotosCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BFA835112C65E82F00040F9E /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
+		BFA835142C65EB8600040F9E /* UIViewToVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewToVC+Extension.swift"; sourceTree = "<group>"; };
 		BFB5018F2C623BEB008DA823 /* PhotosClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB501922C623BEB008DA823 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFB501942C623BEB008DA823 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +65,8 @@
 		BFB501D42C62F241008DA823 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		BFB501D62C62F258008DA823 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BFB501DA2C62FA9C008DA823 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		BFB501DC2C631347008DA823 /* AllPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPhotosView.swift; sourceTree = "<group>"; };
+		BFB501DE2C631FB1008DA823 /* AllPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFA835132C65EB7900040F9E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		BFB501862C623BEB008DA823 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB501C72C62ED0A008DA823 /* PhotosTabBarController.swift */,
+				BFA835112C65E82F00040F9E /* FullScreenImageViewController.swift */,
 				BFB501CC2C62F128008DA823 /* Storage */,
 				BFB501CD2C62F139008DA823 /* Recommend */,
 				BFB501CE2C62F14E008DA823 /* Album */,
@@ -167,6 +183,7 @@
 		BFB501C52C62416C008DA823 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BFA835132C65EB7900040F9E /* Helpers */,
 				BFB501C92C62EE2E008DA823 /* Extensions */,
 			);
 			path = Utils;
@@ -186,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB501CA2C62EE38008DA823 /* UIView+Extension.swift */,
+				BFA835142C65EB8600040F9E /* UIViewToVC+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				BFB501D02C62F16C008DA823 /* StorageViewController.swift */,
+				BFB501DC2C631347008DA823 /* AllPhotosView.swift */,
+				BFB501DE2C631FB1008DA823 /* AllPhotosCollectionViewCell.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -364,11 +384,15 @@
 				BFB501D32C62F22B008DA823 /* RecommendViewController.swift in Sources */,
 				BFB501D72C62F258008DA823 /* SearchViewController.swift in Sources */,
 				BFB501D12C62F16C008DA823 /* StorageViewController.swift in Sources */,
+				BFB501DF2C631FB1008DA823 /* AllPhotosCollectionViewCell.swift in Sources */,
 				BFB501DB2C62FA9C008DA823 /* Images.swift in Sources */,
+				BFA835152C65EB8600040F9E /* UIViewToVC+Extension.swift in Sources */,
 				BFB501D52C62F241008DA823 /* AlbumViewController.swift in Sources */,
 				BFB501932C623BEB008DA823 /* AppDelegate.swift in Sources */,
+				BFB501DD2C631347008DA823 /* AllPhotosView.swift in Sources */,
 				BFB501CB2C62EE38008DA823 /* UIView+Extension.swift in Sources */,
 				BFB501952C623BEB008DA823 /* SceneDelegate.swift in Sources */,
+				BFA835122C65E82F00040F9E /* FullScreenImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
