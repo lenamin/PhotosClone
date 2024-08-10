@@ -9,27 +9,78 @@ import UIKit
 
 extension UIView {
     
-    // MARK: - Auto Layout Helpers
+    ///
+    func addAutoLayoutSubview(_ subview: UIView) {
+        subview.setupForAutoLayout()
+        self.addSubview(subview)
+    }
     
     func setupForAutoLayout() {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
+    /// 각 edge의 padding을 정함
     @discardableResult
-    func pinToSuperviewEdges(_ edges: UIEdgeInsets = .zero, useSafeArea: Bool = false) -> [NSLayoutConstraint] {
-        setupForAutoLayout()
+    func anchor(
+        topAnchor: NSLayoutYAxisAnchor? = nil, topPadding : CGFloat = 0,
+        leadingAnchor: NSLayoutXAxisAnchor? = nil, leadingPadding : CGFloat = 0,
+        bottomAnchor: NSLayoutYAxisAnchor? = nil, bottomPadding : CGFloat = 0,
+        trailingAnchor: NSLayoutXAxisAnchor? = nil, trailingPadding : CGFloat = 0,
+        useSafeAreaTop: Bool = false,
+        useSafeAreaBottom: Bool = false
+    ) -> [NSLayoutConstraint] {
+        guard let superview = superview else {
+            fatalError("Superview should not be nil")
+        }
+        var constraints: [NSLayoutConstraint] = []
         
+        if let top = topAnchor {
+            let topAnchor = useSafeAreaTop ? superview.safeAreaLayoutGuide.topAnchor : top
+            constraints.append(self.topAnchor.constraint(equalTo: topAnchor, constant: topPadding))
+        }
+        
+        if let leading = leadingAnchor {
+            constraints.append(self.leadingAnchor.constraint(equalTo: leading, constant: leadingPadding))
+        }
+        
+        if let bottom = bottomAnchor {
+            let bottomAnchor = useSafeAreaBottom ? superview.safeAreaLayoutGuide.bottomAnchor : bottom
+            constraints.append(self.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -bottomPadding))
+        }
+        
+        if let trailing = trailingAnchor {
+            constraints.append(self.trailingAnchor.constraint(equalTo: trailing, constant: trailingPadding))
+        }
+        
+        NSLayoutConstraint.activate(constraints)
+        return constraints
+    }
+
+    /// Stretches the view to the edges of its superview
+    /// - Parameter commonPadding: In case all padding constants have same value.
+    @discardableResult
+    func stretchToEdges(commonPadding: CGFloat = -8,
+                        topPadding: CGFloat? = nil,
+                        leadingPadding: CGFloat? = nil,
+                        bottomPadding: CGFloat? = nil,
+                        trailingPadding: CGFloat? = nil,
+                        useSafeArea: Bool = false) -> [NSLayoutConstraint] {
         guard let superview = superview else {
             fatalError("Superview must not be nil")
         }
         
         let safeArea = useSafeArea ? superview.safeAreaLayoutGuide : superview.layoutMarginsGuide
         
+        let top = topPadding ?? commonPadding
+        let leading = leadingPadding ?? commonPadding
+        let bottom = bottomPadding ?? commonPadding
+        let trailing = trailingPadding ?? commonPadding
+        
         let constraints = [
-            self.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: edges.top),
-            self.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: edges.left),
-            self.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -edges.bottom),
-            self.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -edges.right)
+            self.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: top),
+            self.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: leading),
+            self.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -bottom),
+            self.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -trailing)
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -37,27 +88,7 @@ extension UIView {
     }
     
     @discardableResult
-    func setWidth(_ width: CGFloat) -> NSLayoutConstraint {
-        setupForAutoLayout()
-        
-        let constraint = self.widthAnchor.constraint(equalToConstant: width)
-        NSLayoutConstraint.activate([constraint])
-        return constraint
-    }
-    
-    @discardableResult
-    func setHeight(_ height: CGFloat) -> NSLayoutConstraint {
-        setupForAutoLayout()
-        
-        let constraint = self.heightAnchor.constraint(equalToConstant: height)
-        NSLayoutConstraint.activate([constraint])
-        return constraint
-    }
-    
-    @discardableResult
     func setSize(width: CGFloat? = nil, height: CGFloat? = nil) -> [NSLayoutConstraint] {
-        setupForAutoLayout()
-        
         var constraints: [NSLayoutConstraint] = []
         
         if let width = width {
@@ -73,9 +104,7 @@ extension UIView {
     }
     
     @discardableResult
-    func centerInSuperview() -> [NSLayoutConstraint] {
-        setupForAutoLayout()
-        
+    func centerSuperview() -> [NSLayoutConstraint] {
         guard let superview = superview else {
             fatalError("Superview must not be nil")
         }
@@ -90,18 +119,14 @@ extension UIView {
     }
     
     @discardableResult
-    func alignCenterHorizontally(to view: UIView) -> NSLayoutConstraint {
-        setupForAutoLayout()
-        
+    func centerX(to view: UIView) -> NSLayoutConstraint {
         let constraint = self.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         NSLayoutConstraint.activate([constraint])
         return constraint
     }
     
     @discardableResult
-    func alignCenterVertically(to view: UIView) -> NSLayoutConstraint {
-        setupForAutoLayout()
-        
+    func centerY(to view: UIView) -> NSLayoutConstraint {
         let constraint = self.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         NSLayoutConstraint.activate([constraint])
         return constraint
