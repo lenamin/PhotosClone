@@ -9,6 +9,10 @@ import UIKit
 
 class StorageViewController: UIViewController {
     
+    private let photoManager = PhotoManager.shared
+    
+    private var dateMode = DateMode.day(Date())
+    
     private let segmentedControl: UISegmentedControl = {
         let items = ["연", "월", "일", "모든사진"]
         let segmentedControl = UISegmentedControl(items: items)
@@ -17,17 +21,23 @@ class StorageViewController: UIViewController {
     }()
     
     private let allPhotosView = AllPhotosView()
-    
-    private let containerView = UIView()
+    private let dayPhotosView = DayPhotosView()
+    private let monthPhotosView = DayPhotosView()
+    private let yearPhotosView = DayPhotosView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        [dayPhotosView, monthPhotosView, yearPhotosView].forEach { $0.isHidden = true }
+        allPhotosView.isHidden = false
         configureUI()
         configureConstraints()
         configureSegmentedControl()
+        segmentedControlChanged()
+
+        segmentedControl.selectedSegmentIndex = 3
         view.preservesSuperviewLayoutMargins = false
     }
+    
 }
 
 private extension StorageViewController {
@@ -36,19 +46,23 @@ private extension StorageViewController {
     func configureUI() {
         view.backgroundColor = .white
         allPhotosView.backgroundColor = .white
-        [allPhotosView, segmentedControl].forEach { view.addAutoLayoutSubview($0) }
+        view.addAutoLayoutSubview(allPhotosView)
+        [dayPhotosView, monthPhotosView, yearPhotosView, segmentedControl].forEach { view.addAutoLayoutSubview($0)
+            $0.backgroundColor = .white
+        }
         navigationController?.navigationBar.backgroundColor = .clear
     }
     
     /// AutoLayout 설정
     func configureConstraints() {
-        allPhotosView.anchor(topAnchor: view.topAnchor, topPadding: 0, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
+        [allPhotosView, dayPhotosView,  monthPhotosView, yearPhotosView].forEach {
+            $0.anchor(topAnchor: view.topAnchor, topPadding: 0, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
+            $0.setSize(width: UIScreen.main.bounds.width)
+        }
+        
+        [allPhotosView,dayPhotosView, monthPhotosView, yearPhotosView, segmentedControl].forEach { $0.centerX(to: view) }
         
         segmentedControl.anchor(bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor, bottomPadding: 12)
-        
-        [allPhotosView,segmentedControl].forEach { $0.centerX(to: view) }
-        
-        allPhotosView.setSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - segmentedControl.frame.height)
         segmentedControl.setSize(width: view.frame.width * 0.9,height: 40)
     }
     
@@ -72,17 +86,51 @@ private extension StorageViewController {
         let selectedIndex = segmentedControl.selectedSegmentIndex
         
         switch selectedIndex {
-            case 0:
-                allPhotosView.isHidden = false
-            case 1:
-                allPhotosView.isHidden = false
-            case 2:
-                allPhotosView.isHidden = false
             case 3:
+                [dayPhotosView, monthPhotosView, yearPhotosView].forEach { $0.isHidden = true }
                 allPhotosView.isHidden = false
+                print("selectedIndex가 3이고, allPhotosView를 띄운다")
+                
+            case 2:
+                dateMode = .day(Date())
+                [allPhotosView, monthPhotosView, yearPhotosView].forEach { $0.isHidden = true }
+                dayPhotosView.isHidden = false
+                dayPhotosView.loadData(of: dateMode)
+                print("selectedIndex가 2이고, dayPhotosView를 띄운다")
+                
+            case 1:
+                dateMode = .month(Date())
+                monthPhotosView.isHidden = false
+                [dayPhotosView, allPhotosView, yearPhotosView].forEach { $0.isHidden = true }
+                print("selectedIndex가 1이고, monthPhotosView를 띄운다")
+                monthPhotosView.loadData(of: dateMode)
+            case 0:
+                dateMode = .year(Date())
+                yearPhotosView.isHidden = false
+                [dayPhotosView, monthPhotosView, allPhotosView].forEach { $0.isHidden = true }
+                print("selectedIndex가 0이고, yearPhotosView를 띄운다")
+                yearPhotosView.loadData(of: dateMode)
             default:
                 break
-            
         }
     }
+    /*
+    private func updateAssets(for dateRange: DateGroupRange) {
+        guard photoManager.fetchDateRange() != nil else {
+            return print("StorageVC의 updateAssets== 날짜범위 가져오는데 실패함")}
+        
+        let groupedAssets = photoManager.fetchGroupDateAssets(for: dateRange)
+        
+        switch DateMode.self {
+            case .day:
+                dayPhotosView.loadData(of: .day(Date()))
+//                dayPhotosView.updateAssets(groupedAssets)
+            case .month:
+//                monthPhotosView.updateAssets(groupedAssets)
+                monthPhotosView.loadData(of: .month(Date()))
+            case .year:
+//                yearPhotosView.updateAssets(groupedAssets)
+                yearPhotosView.loadData(of: .year(Date()))
+        }
+    }*/
 }
