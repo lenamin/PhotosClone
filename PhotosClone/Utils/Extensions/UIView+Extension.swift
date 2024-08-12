@@ -7,9 +7,10 @@
 
 import UIKit
 
+// MARK: - AutoLayout 설정
+
 extension UIView {
     
-    ///
     func addAutoLayoutSubview(_ subview: UIView) {
         subview.setupForAutoLayout()
         self.addSubview(subview)
@@ -66,7 +67,7 @@ extension UIView {
                         trailingPadding: CGFloat? = nil,
                         useSafeArea: Bool = false) -> [NSLayoutConstraint] {
         guard let superview = superview else {
-            fatalError("Superview must not be nil")
+            fatalError("\(self.debugDescription)의 Superview must not be nil")
         }
         
         let safeArea = useSafeArea ? superview.safeAreaLayoutGuide : superview.layoutMarginsGuide
@@ -132,3 +133,17 @@ extension UIView {
         return constraint
     }
 }
+
+// MARK: - UIPinGesture 관련
+
+extension UIView {
+    func removePinchGesture() {
+        gestureRecognizers?.forEach { gesture in
+            if let pinchGesture = gesture as? UIPinchGestureRecognizer {
+                removeGestureRecognizer(pinchGesture)
+            }
+        }
+    }
+
+}
+
