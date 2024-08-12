@@ -144,8 +144,7 @@ extension FullScreenImageViewController: UIToolbarDelegate {
     }
     
     private func locationTitle() -> String {
-        // Assuming you have a location property in your asset
-        return "Location Name" // Replace with actual location retrieval
+        return "Location Name"
     }
     
     private func dateTitle() -> String {
@@ -177,27 +176,27 @@ extension FullScreenImageViewController: UIToolbarDelegate {
     }
     
     @objc private func editButtonTapped() {
-        // Implement edit functionality here
+        
         print("Edit button tapped")
     }
     
     @objc private func shareButtonTapped() {
         print("Share button tapped")
-        // Implement share functionality here
+        
     }
     
     @objc private func likeButtonTapped() {
-        // Implement like functionality here
+        
         print("Like button tapped")
     }
     
     @objc private func infoButtonTapped() {
-        // Implement info functionality here
+        
         print("Info button tapped")
     }
     
     @objc private func deleteButtonTapped() {
-        // Implement delete functionality here
+        
         print("Delete button tapped")
     }
 }
