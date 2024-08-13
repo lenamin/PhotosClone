@@ -12,43 +12,72 @@ extension PhotoManager {
     enum AlbumType {
         case userAlbum
         case sharedAlbum
-        case people
-        case animals
-        case places
         case mediaType(MediaType)
         
         enum MediaType {
+            /// PHAssetMediaType.video 에서 가져오기
             case video
-            case selfie
-            case livePhoto
-            case portrait
-            case longExposure
-            case panorama
-            case timelapse
-            case sloMo
-            case cinematic
-            case burst
-            case screenshot
-            case screenRecording
-            case animated
+            case photoLive
+            
+            /// slowmotion
+            case photoHDR
+            case photoPanorama
+            case videoTimelapse
+            case videoCinematic
+            case photoScreenshot
+            
+            var subTypesName: String {
+                switch self {
+                    case .video: "비디오"
+                    case .photoLive: "Live Photo"
+                    case .photoHDR: "슬로 모션"
+                    case .photoPanorama: "파노라마"
+                    case .videoTimelapse: "타임랩스"
+                    case .videoCinematic: "시네마틱"
+                    case .photoScreenshot: "스크린샷"
+                        
+                }
+            }
         }
+        
+        var index: Int {
+            switch self {
+                case .userAlbum: 0
+                case .sharedAlbum: 1
+                case .mediaType: 2
+            }
+        }
+        
+        func numberOfColumns() -> Int {
+            switch self {
+            case .userAlbum, .sharedAlbum:
+                return 2
+            case .mediaType:
+                return 1
+            }
+        }
+        
+        func mediaTypeToPHAssetMediaType(_ mediaType: AlbumType.MediaType) -> PHAssetMediaType {
+            switch mediaType {
+            case .video, .videoTimelapse, .videoCinematic:
+                return .video
+            case .photoLive, .photoHDR, .photoPanorama, .photoScreenshot:
+                return .image
+            }
+        }
+
     }
-    
-    func mediaTypeToPHAssetMediaType(_ mediaType: AlbumType.MediaType) -> PHAssetMediaType {
-        switch mediaType {
-        case .video: return .video
-        case .selfie: return .image
-        case .livePhoto: return .image
-        case .portrait: return .image
-        case .longExposure: return .image
-        case .panorama: return .image
-        case .timelapse: return .video
-        case .sloMo: return .video
-        case .cinematic: return .video
-        case .burst: return .image
-        case .screenshot: return .image
-        case .screenRecording: return .video
-        case .animated: return .image
-        }
+ 
+    func allMediaSubtypes() -> [Int] {
+        return [
+            Int(PHAssetMediaSubtype.videoStreamed.rawValue),
+            Int(PHAssetMediaSubtype.videoHighFrameRate.rawValue),
+            Int(PHAssetMediaSubtype.videoTimelapse.rawValue),
+            Int(PHAssetMediaSubtype.photoLive.rawValue),
+            Int(PHAssetMediaSubtype.photoDepthEffect.rawValue),
+            Int(PHAssetMediaSubtype.photoPanorama.rawValue),
+            Int(PHAssetMediaSubtype.photoHDR.rawValue),
+            Int(PHAssetMediaSubtype.photoScreenshot.rawValue)
+        ]
     }
 }

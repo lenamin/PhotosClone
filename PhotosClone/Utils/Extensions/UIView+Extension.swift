@@ -57,8 +57,8 @@ extension UIView {
         return constraints
     }
 
-    /// Stretches the view to the edges of its superview
-    /// - Parameter commonPadding: In case all padding constants have same value.
+    /// superview 까지 늘리는 메서드
+    /// - Parameter commonPadding: 모든 패딩값이 동일 할 때 사용
     @discardableResult
     func stretchToEdges(commonPadding: CGFloat = -8,
                         topPadding: CGFloat? = nil,
@@ -144,6 +144,4 @@ extension UIView {
             }
         }
     }
-
 }
-

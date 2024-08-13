@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
     
-    /// For navigating from UIView to UIViewController 
+    /// UIView에서 UIViewController로의 pushViewController할 VC를 찾는 메서드
     func findViewController() -> UIViewController? {
         var view = self
         while let next = view.next {

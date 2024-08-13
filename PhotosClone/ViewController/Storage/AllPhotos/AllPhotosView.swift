@@ -55,29 +55,25 @@ class AllPhotosView: UIView, UIGestureRecognizerDelegate {
     }
 }
 
-// MARK: - CollectionView DataSource & Delegate & Prefetching
-
 extension AllPhotosView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
     
-    // MARK: - Prefetching
+    // MARK: - CollectionView Prefetching
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         let cellSize = self.frame.width / CGFloat(numberOfColumns)
         let targetSize = CGSize(width: cellSize, height: cellSize)
         
-        for indexPath in indexPaths {
-            let asset = self.asset[indexPath.item]
-            
-            let requestID = imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: nil) { [weak self] image, _ in
-                
-                guard let self = self else { return }
-                if self.prefetchingIndexPathOperations[indexPath] != nil {
-                    if let cell = collectionView.cellForItem(at: indexPath) as? AllPhotosCollectionViewCell {
-                        cell.imageView.image = image
+        
+        Task {
+            await withTaskGroup(of: Void.self) { group in
+                for indexPath in indexPaths {
+                    let asset = self.asset[indexPath.item]
+                    
+                    group.addTask {
+                        await self.loadImage(for: asset, targetSize: targetSize, indexPath: indexPath)
                     }
                 }
             }
-            prefetchingIndexPathOperations[indexPath] = requestID
         }
     }
     
@@ -89,7 +85,7 @@ extension AllPhotosView: UICollectionViewDataSource, UICollectionViewDelegate, U
         }
     }
     
-    // MARK: - CollectionView Layout
+    // MARK: - CollectionView DataSource & Delegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return asset.count
@@ -100,9 +96,12 @@ extension AllPhotosView: UICollectionViewDataSource, UICollectionViewDelegate, U
         
         let asset = self.asset[indexPath.row]
         cell.assetIdentifier = asset.localIdentifier
-        
         let targetSize = CGSize(width: cell.bounds.width, height: cell.bounds.width)
-        imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: nil) { image, _ in
+        
+        
+        Task {
+            let image = await self.loadImage(for: asset, targetSize: targetSize)
+            
             if cell.assetIdentifier == asset.localIdentifier {
                 cell.imageView.image = image
             }
@@ -124,8 +123,6 @@ extension AllPhotosView: UICollectionViewDataSource, UICollectionViewDelegate, U
         return 0.0
     }
     
-    // MARK: - CollectionView Selection
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let asset = self.asset[indexPath.item]
         let fullScreenImageViewController = FullScreenImageViewController(asset: asset)
@@ -141,11 +138,14 @@ extension AllPhotosView: UICollectionViewDataSource, UICollectionViewDelegate, U
 extension AllPhotosView {
     
     private func setUpPinchGesture() {
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        let pinchGesture = UIPinchGestureRecognizer(
+            target: self,
+            action: #selector(handlePinchGesture(_:)))
         pinchGesture.delegate = self
         collectionView.addGestureRecognizer(pinchGesture)
     }
     
+    /// 줌인, 줌아웃에 따른 numberOfColumns 조정 및 layout 설정
     @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
         
         switch gesture.state {
@@ -175,14 +175,16 @@ extension AllPhotosView {
             let itemWidth = availableWidth / CGFloat(columns)
             let newSize = CGSize(width: itemWidth, height: itemWidth)
             
-            if animated {
-                UIView.animate(withDuration: 0.3) {
+            if layout.itemSize != newSize {
+                if animated {
+                    UIView.animate(withDuration: 0.3) {
+                        layout.itemSize = newSize
+                        layout.invalidateLayout()
+                    }
+                } else {
                     layout.itemSize = newSize
                     layout.invalidateLayout()
                 }
-            } else {
-                layout.itemSize = newSize
-                layout.invalidateLayout()
             }
         }
     }
@@ -200,6 +202,31 @@ extension AllPhotosView {
                 return 3
             default:
                 return 1
+        }
+    }
+}
+
+// MARK: - 이미지 로드
+
+extension AllPhotosView {
+    
+    /// 이미지 로딩
+    private func loadImage(for asset: PHAsset, targetSize: CGSize) async -> UIImage? {
+        await withCheckedContinuation { continuation in
+            let requestOptions = PHImageRequestOptions()
+            requestOptions.isSynchronous = true
+
+            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: requestOptions) { image, _ in
+                continuation.resume(returning: image)
+            }
+        }
+    }
+    
+    /// 로딩된 이미지를 collectionView에 호출
+    private func loadImage(for asset: PHAsset, targetSize: CGSize, indexPath: IndexPath) async {
+        let image = await loadImage(for: asset, targetSize: targetSize)
+        if let cell = collectionView.cellForItem(at: indexPath) as? AllPhotosCollectionViewCell {
+            cell.imageView.image = image
         }
     }
 }

@@ -12,17 +12,18 @@ class CommonHeaderView: UICollectionReusableView {
     
     let headerLabel: UILabel = {
         let label = UILabel()
-//        label.tag = 
-        label.font = .boldSystemFont(ofSize: 44)
+        label.font = .boldSystemFont(ofSize: 30)
         label.textColor = .black
         label.textAlignment = .left
+        label.adjustsFontForContentSizeCategory = true
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addAutoLayoutSubview(headerLabel)
-        headerLabel.stretchToEdges(useSafeArea: false)
+        headerLabel.stretchToEdges(commonPadding: 6)
     }
     
     required init?(coder: NSCoder) {

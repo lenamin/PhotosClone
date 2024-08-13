@@ -1,14 +1,15 @@
 //
-//  AllPhotosCollectionViewCell.swift
+//  DayPhotosCollectionViewCell.swift
 //  PhotosClone
 //
-//  Created by Lena on 2024/8/7.
+//  Created by Lena on 2024/8/10.
 //
 
 import UIKit
 
-class AllPhotosCollectionViewCell: UICollectionViewCell {
-    static let identifier = "AllPhotosCollectionViewCell"
+class DayPhotosCollectionViewCell: UICollectionViewCell {
+    
+    static let identifier = "DayPhotosCollectionViewCell"
     var assetIdentifier: String?
     
     let imageView: UIImageView = {
@@ -31,5 +32,13 @@ class AllPhotosCollectionViewCell: UICollectionViewCell {
         contentView.addAutoLayoutSubview(imageView)
         imageView.stretchToEdges(useSafeArea: false)
         imageView.preservesSuperviewLayoutMargins = false
+        
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 8
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.clear.cgColor
+        contentView.layer.masksToBounds = true
+        contentView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        contentView.layer.shadowColor = UIColor.darkGray.cgColor
     }
 }

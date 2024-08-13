@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		BF5FB2EC2C69D7B400DB06BC /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2EB2C69D7B400DB06BC /* RecommendCollectionViewCell.swift */; };
-		BF5FB2EE2C69DFD000DB06BC /* RecommendAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2ED2C69DFD000DB06BC /* RecommendAlbum.swift */; };
+		BF5FB2F02C6AF84E00DB06BC /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2EF2C6AF84E00DB06BC /* DateFormatter+Extension.swift */; };
+		BF5FB2F22C6B0D7900DB06BC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FB2F12C6B0D7900DB06BC /* LocationManager.swift */; };
 		BFA835122C65E82F00040F9E /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA835112C65E82F00040F9E /* FullScreenImageViewController.swift */; };
 		BFA835152C65EB8600040F9E /* UIViewToVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA835142C65EB8600040F9E /* UIViewToVC+Extension.swift */; };
 		BFA835172C67250E00040F9E /* DayPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA835162C67250E00040F9E /* DayPhotosView.swift */; };
-		BFA8351B2C672D1400040F9E /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8351A2C672D1400040F9E /* PhotoViewModel.swift */; };
 		BFA8351E2C672D5A00040F9E /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8351D2C672D5A00040F9E /* PhotoManager.swift */; };
 		BFA835202C672DFF00040F9E /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8351F2C672DFF00040F9E /* DateRange.swift */; };
 		BFA835232C67309600040F9E /* PreficateFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA835222C67309600040F9E /* PreficateFormats.swift */; };
@@ -56,11 +56,11 @@
 
 /* Begin PBXFileReference section */
 		BF5FB2EB2C69D7B400DB06BC /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
-		BF5FB2ED2C69DFD000DB06BC /* RecommendAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendAlbum.swift; sourceTree = "<group>"; };
+		BF5FB2EF2C6AF84E00DB06BC /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		BF5FB2F12C6B0D7900DB06BC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		BFA835112C65E82F00040F9E /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		BFA835142C65EB8600040F9E /* UIViewToVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewToVC+Extension.swift"; sourceTree = "<group>"; };
 		BFA835162C67250E00040F9E /* DayPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPhotosView.swift; sourceTree = "<group>"; };
-		BFA8351A2C672D1400040F9E /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		BFA8351D2C672D5A00040F9E /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		BFA8351F2C672DFF00040F9E /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
 		BFA835222C67309600040F9E /* PreficateFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreficateFormats.swift; sourceTree = "<group>"; };
@@ -114,6 +114,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF8F86542C6B77A800069B01 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				BFB501A02C623BEC008DA823 /* Info.plist */,
+				BFB501922C623BEB008DA823 /* AppDelegate.swift */,
+				BFB501942C623BEB008DA823 /* SceneDelegate.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		BFA835132C65EB7900040F9E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				BFA8351D2C672D5A00040F9E /* PhotoManager.swift */,
+				BF5FB2F12C6B0D7900DB06BC /* LocationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -179,15 +190,12 @@
 		BFB501912C623BEB008DA823 /* PhotosClone */ = {
 			isa = PBXGroup;
 			children = (
-				BFA8351C2C672D5200040F9E /* Manager */,
-				BFB501A02C623BEC008DA823 /* Info.plist */,
-				BFB501922C623BEB008DA823 /* AppDelegate.swift */,
-				BFB501942C623BEB008DA823 /* SceneDelegate.swift */,
+				BF8F86542C6B77A800069B01 /* Global */,
 				BFB501C62C624175008DA823 /* Resource */,
 				BFB501C52C62416C008DA823 /* Utils */,
-				BFB501C42C624163008DA823 /* View */,
-				BFB501C32C62415D008DA823 /* ViewModel */,
+				BFB501C42C624163008DA823 /* ViewController */,
 				BFB501C22C624158008DA823 /* Model */,
+				BFA8351C2C672D5200040F9E /* Manager */,
 			);
 			path = PhotosClone;
 			sourceTree = "<group>";
@@ -213,20 +221,11 @@
 			isa = PBXGroup;
 			children = (
 				BFA8351F2C672DFF00040F9E /* DateRange.swift */,
-				BF5FB2ED2C69DFD000DB06BC /* RecommendAlbum.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BFB501C32C62415D008DA823 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				BFA8351A2C672D1400040F9E /* PhotoViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		BFB501C42C624163008DA823 /* View */ = {
+		BFB501C42C624163008DA823 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				BFB501C72C62ED0A008DA823 /* PhotosTabBarController.swift */,
@@ -236,7 +235,7 @@
 				BFB501CE2C62F14E008DA823 /* Album */,
 				BFB501CF2C62F155008DA823 /* Search */,
 			);
-			path = View;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		BFB501C52C62416C008DA823 /* Utils */ = {
@@ -265,6 +264,7 @@
 				BFA835242C6733B900040F9E /* PhotoManager+Extension.swift */,
 				BFB501CA2C62EE38008DA823 /* UIView+Extension.swift */,
 				BFA835142C65EB8600040F9E /* UIViewToVC+Extension.swift */,
+				BF5FB2EF2C6AF84E00DB06BC /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -443,7 +443,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFB501C82C62ED0A008DA823 /* PhotosTabBarController.swift in Sources */,
-				BF5FB2EE2C69DFD000DB06BC /* RecommendAlbum.swift in Sources */,
+				BF5FB2F22C6B0D7900DB06BC /* LocationManager.swift in Sources */,
+				BF5FB2F02C6AF84E00DB06BC /* DateFormatter+Extension.swift in Sources */,
 				BFB501D32C62F22B008DA823 /* RecommendViewController.swift in Sources */,
 				BFA835232C67309600040F9E /* PreficateFormats.swift in Sources */,
 				BFA8351E2C672D5A00040F9E /* PhotoManager.swift in Sources */,
@@ -454,7 +455,6 @@
 				BFA835272C6747BC00040F9E /* DayPhotosCollectionViewCell.swift in Sources */,
 				BFB501D72C62F258008DA823 /* SearchViewController.swift in Sources */,
 				BFB501D12C62F16C008DA823 /* StorageViewController.swift in Sources */,
-				BFA8351B2C672D1400040F9E /* PhotoViewModel.swift in Sources */,
 				BFB501DF2C631FB1008DA823 /* AllPhotosCollectionViewCell.swift in Sources */,
 				BFA835172C67250E00040F9E /* DayPhotosView.swift in Sources */,
 				BFB501DB2C62FA9C008DA823 /* Images.swift in Sources */,
@@ -564,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -621,7 +621,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -636,29 +636,33 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9CAJN27UH;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosClone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Photos";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"갤러리에 사진을 띄우기 위해 Photo Library에 접근이 필요합니다.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lena.PhotosClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -667,29 +671,33 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D9CAJN27UH;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosClone/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Photos";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.photography";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"갤러리에 사진을 띄우기 위해 Photo Library에 접근이 필요합니다.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = lena.PhotosClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

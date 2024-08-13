@@ -14,4 +14,3 @@ class AlbumViewController: UIViewController {
         view.backgroundColor = .white
     }
 }
-

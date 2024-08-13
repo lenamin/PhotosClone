@@ -1,15 +1,15 @@
 //
-//  DayPhotosCollectionViewCell.swift
+//  AllPhotosCollectionViewCell.swift
 //  PhotosClone
 //
-//  Created by Lena on 2024/8/10.
+//  Created by Lena on 2024/8/7.
 //
 
 import UIKit
 
-class DayPhotosCollectionViewCell: UICollectionViewCell {
+class AllPhotosCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "DayPhotosCollectionViewCell"
+    static let identifier = "AllPhotosCollectionViewCell"
     var assetIdentifier: String?
     
     let imageView: UIImageView = {
