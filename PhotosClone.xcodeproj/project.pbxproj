@@ -72,7 +72,7 @@
 		BFB501942C623BEB008DA823 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BFB5019B2C623BEC008DA823 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB5019E2C623BEC008DA823 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BFB501A02C623BEC008DA823 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFB501A02C623BEC008DA823 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Global/Info.plist; sourceTree = "<group>"; };
 		BFB501A52C623BEC008DA823 /* PhotosCloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosCloneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB501A92C623BEC008DA823 /* PhotosCloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCloneTests.swift; sourceTree = "<group>"; };
 		BFB501AF2C623BEC008DA823 /* PhotosCloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosCloneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,16 +114,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF8F86542C6B77A800069B01 /* Global */ = {
-			isa = PBXGroup;
-			children = (
-				BFB501A02C623BEC008DA823 /* Info.plist */,
-				BFB501922C623BEB008DA823 /* AppDelegate.swift */,
-				BFB501942C623BEB008DA823 /* SceneDelegate.swift */,
-			);
-			path = Global;
-			sourceTree = "<group>";
-		};
 		BFA835132C65EB7900040F9E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +180,9 @@
 		BFB501912C623BEB008DA823 /* PhotosClone */ = {
 			isa = PBXGroup;
 			children = (
-				BF8F86542C6B77A800069B01 /* Global */,
+				BFB501A02C623BEC008DA823 /* Info.plist */,
+				BFB501922C623BEB008DA823 /* AppDelegate.swift */,
+				BFB501942C623BEB008DA823 /* SceneDelegate.swift */,
 				BFB501C62C624175008DA823 /* Resource */,
 				BFB501C52C62416C008DA823 /* Utils */,
 				BFB501C42C624163008DA823 /* ViewController */,
@@ -636,9 +628,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosClone/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Simple Photos";
@@ -654,6 +647,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lena.PhotosClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -671,9 +665,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D9CAJN27UH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosClone/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Simple Photos";
@@ -689,6 +684,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lena.PhotosClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
