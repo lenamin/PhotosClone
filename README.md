@@ -1,5 +1,4 @@
-# Simple Photos
-iOS 엔지니어 지원자 석혜민 채용과제
+# PhotosClone
 
 ## 개발 환경 및 프레임워크
 |구분|항목|
@@ -49,7 +48,7 @@ AutoLayout을 코드로 구현할 때 반복되는 코드를 줄이고자 UIView
 
 ## ScreenShots 
 |AllPhotosView|dayPhotosView|monthPhotosView|yearPhotosView|RecommendViewController|FullScreenViewController|
-|:-:|:-:|:-:|:-:|:-:|:-:|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 |<img src="https://github.com/user-attachments/assets/87f3e068-8d6b-45dc-88c1-544ede75c33e" width="190">|<img src="https://github.com/user-attachments/assets/185a84d9-651c-41fa-bb9f-aa722ee20568" width="190">|<img src="https://github.com/user-attachments/assets/8f92eaba-2dcb-4945-a68b-6db722e6cebe" width="190">|<img src = "https://github.com/user-attachments/assets/22b5ee85-c541-47cb-90a6-7e4cedd5f4f5" width="190">|<img src="https://github.com/user-attachments/assets/6d374c2b-0dff-4185-ab6f-e6c48d04f170" width="190">|<img src="https://github.com/user-attachments/assets/297dff91-3143-43bb-b162-fbcc2e5356fa" width="190">|
 
 
