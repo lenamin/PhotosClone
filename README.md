@@ -15,7 +15,59 @@ Photos 앱은  <보관함, For You, 앨범, 검색> 총 네 개의 탭을 가지
 #### 1. 보관함
 - "모든 사진"
     - PinchGesture를 통해 사진 축소 / 확대 기능, 동적으로 cell 크기 변경 기능 구현
-    - 해당 사진을 탭하면 FullScreenViewController로 이동 
+    - 해당 사진을 탭하면 FullScreenViewController로 이동
+        - 줌인, 줌아웃에 따른 numberOfColumns 조정 및 layout 설정    
+
+          ```swift
+            @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
+        
+                switch gesture.state {
+                    case .began, .changed:
+                        scale = max(0.1, min(3.0, 0.9 * gesture.scale))
+                        
+                        let newNumberOfColumns = calculateNumberOfColumns(for: scale)
+                        
+                        if numberOfColumns != newNumberOfColumns {
+                            numberOfColumns = newNumberOfColumns
+                            updateFlowLayout(columns: numberOfColumns, animated: true)
+                        }
+                    case .ended:
+                        UIView.animate(withDuration: 0.3) {
+                            self.collectionView.transform = .identity
+                        }
+                        gesture.scale = 1.0
+                    default:
+                        break
+                }
+            }
+             ```
+          
+      - item 사이즈에 따른 collectionView의 column 개수 핸들링
+      
+          ```swift
+
+        
+                func updateFlowLayout(columns: Int, animated: Bool) {
+                    if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            
+                    let availableWidth = collectionView.bounds.width
+                    let itemWidth = availableWidth / CGFloat(columns)
+                    let newSize = CGSize(width: itemWidth, height: itemWidth)
+                    
+                    if layout.itemSize != newSize {
+                        if animated {
+                            UIView.animate(withDuration: 0.3) {
+                                layout.itemSize = newSize
+                                layout.invalidateLayout()
+                            }
+                        } else {
+                            layout.itemSize = newSize
+                            layout.invalidateLayout()
+                        }
+                    }
+                }
+            }
+            ```
     
 - "일" / "월" / "연"
     - 기기에 저장되어 있는 모든 사진을 일자별 / 월별 / 연별로 Sorting하여 출력  
@@ -27,22 +79,6 @@ Photos 앱은  <보관함, For You, 앨범, 검색> 총 네 개의 탭을 가지
 - HeaderView의 경우 공통 HeaderView를 구현하여 재사용
 - 해당 사진을 찍은 장소 및 날짜 호출 
 - 동영상 앨범의 경우, 동영상 재생 기능 구현 (탭하는 경우 isPlaying 상태 토글)
-
-#### 3. AutoLayout의 효율적인 사용을 위한 UIView Extension 구현
-AutoLayout을 코드로 구현할 때 반복되는 코드를 줄이고자 UIView Extension을 구현하였습니다. 
-
-- `translateAutoresizingMaskIntoConstraints = false` 부분이 여러차례 호출되는 문제를 해결하고자 하위뷰를 addSubview 할 때 한 번만 호출 될 수 있도록 구현하였습니다. 
-
-    ```swift
-    func addAutoLayoutSubview(_ subview: UIView) {
-        subview.setupForAutoLayout()
-        self.addSubview(subview)
-    }
-    
-    func setupForAutoLayout() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-    }
-    ```
 
 
 
